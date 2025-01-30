@@ -17,6 +17,9 @@ const PageFour = lazy(() => import('src/pages/dashboard/four'));
 const PageFive = lazy(() => import('src/pages/dashboard/five'));
 const PageSix = lazy(() => import('src/pages/dashboard/six'));
 
+
+const Effectif = lazy(() => import('src/pages/dashboard/employes/index'));
+
 // ----------------------------------------------------------------------
 
 const layoutContent = (
@@ -33,6 +36,12 @@ export const dashboardRoutes = [
     element: CONFIG.auth.skip ? <>{layoutContent}</> : <AuthGuard>{layoutContent}</AuthGuard>,
     children: [
       { element: <IndexPage />, index: true },
+      {
+        path: 'employes',
+        children: [
+          { element: <Effectif />, index: true},
+        ]
+      },
       { path: 'two', element: <PageTwo /> },
       { path: 'three', element: <PageThree /> },
       {

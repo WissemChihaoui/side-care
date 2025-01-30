@@ -51,10 +51,10 @@ export const navData = [
       { title: 'Tableau de bord', path: paths.dashboard.root, icon: ICONS.dashboard },
       { 
         title: 'Employés',
-        path: paths.dashboard.two, 
+        path: paths.dashboard.employes.root, 
         icon: ICONS.users,
         children: [
-          { title: 'Effectifs', path: paths.dashboard.root},
+          { title: 'Effectifs', path: paths.dashboard.employes.root},
           { title: 'Equipes', path: paths.dashboard.root},
           { title: 'Trombinoscope', path: paths.dashboard.root},
           { title: 'Organigramme', path: paths.dashboard.root},
