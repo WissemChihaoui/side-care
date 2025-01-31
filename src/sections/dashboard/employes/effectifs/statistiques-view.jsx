@@ -1,5 +1,7 @@
+import Grid from '@mui/material/Unstable_Grid2';
 import {
   Card,
+  CardContent,
   CardHeader,
   Checkbox,
   FormControl,
@@ -8,66 +10,108 @@ import {
   OutlinedInput,
   Select,
   Stack,
+  Typography,
+  useTheme,
 } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { _employesList, ENTREPRISE } from 'src/_mock/_employes';
+import { ChartSelect } from 'src/components/chart';
 import { useSetState } from 'src/hooks/use-set-state';
+import { ChartLine } from './chart-line';
+import NombreSalarieChart from './charts/nombre-salarie-chart';
+import DepartArrivesChart from './charts/depart-arrives-chart';
+import TypeContractChart from './charts/type-contract-chart';
+import GenderReparationChart from './charts/gender-reparation-chart';
+import ReparationCollege from './charts/reparation-college';
+import MoyenAge from './charts/moyen-age';
 
 export default function StatistiquesView() {
   const [tableData, setTableData] = useState(_employesList);
-  const entreprise = useSetState('Toutes mes entreprises');
+
+  const filters = useSetState({ entreprise: 'Toutes mes entreprises' });
 
   const handleFilterEntreprise = useCallback(
     (event) => {
       const newValue = event.target.value;
-      entreprise.setState(newValue);
+      filters.setState({ entreprise: newValue });
     },
-    [entreprise]
+    [filters]
   );
 
+  console.log('ENTREPRISE:', filters.state.entreprise);
   const dataFiltered = applyFilter({
     inputData: tableData,
-    entreprise: entreprise.state,
+    filters: filters.state,
   });
+
+  const male = dataFiltered.filter(user => user.gender === 'm');
+  const female = dataFiltered.filter(user => user.gender === 'f');
+  console.log(male, female)
+
   return (
     <>
-      <Stack>
-        <Card>
-          <Stack sx={{ p: 2 }}>
-            <FormControl sx={{ flexShrink: 0 }}>
-              <InputLabel htmlFor="user-filter-role-select-label">Entreprise</InputLabel>
-              <Select
-                value={entreprise.state}
-                onChange={handleFilterEntreprise}
-                input={<OutlinedInput label="Entreprise" />}
-                renderValue={(selected) => selected}
-                inputProps={{ id: 'user-filter-role-select-label' }}
-                MenuProps={{ PaperProps: { sx: { maxHeight: 240 } } }}
-              >
-                <MenuItem value="Toutes mes entreprises">
-                  <Checkbox
-                    disableRipple
-                    size="small"
-                    checked={entreprise.state === 'Toutes mes entreprises'}
-                  />
-                  Toutes mes entreprises
-                </MenuItem>
-                {ENTREPRISE.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    <Checkbox disableRipple size="small" checked={entreprise.state === option} />
-                    {option}
+      <Grid container spacing={4}>
+        <Grid xs={12}>
+          <Card>
+            <Stack sx={{ p: 2 }}>
+              <FormControl sx={{ flexShrink: 0 }}>
+                <InputLabel htmlFor="user-filter-role-select-label">Entreprise</InputLabel>
+                <Select
+                  value={filters.state.entreprise}
+                  onChange={handleFilterEntreprise}
+                  input={<OutlinedInput label="Entreprise" />}
+                  renderValue={(selected) => selected}
+                  inputProps={{ id: 'user-filter-role-select-label' }}
+                  MenuProps={{ PaperProps: { sx: { maxHeight: 240 } } }}
+                >
+                  <MenuItem value="Toutes mes entreprises">
+                    <Checkbox
+                      disableRipple
+                      size="small"
+                      checked={filters.state.entreprise === 'Toutes mes entreprises'}
+                    />
+                    Toutes mes entreprises
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Stack>
-        </Card>
-      </Stack>
+                  {ENTREPRISE.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      <Checkbox
+                        disableRipple
+                        size="small"
+                        checked={filters.state.entreprise === option}
+                      />
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Stack>
+          </Card>
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <NombreSalarieChart />
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <DepartArrivesChart />
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <TypeContractChart />
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <GenderReparationChart options={{male: male.length,female: female.length, }}/>
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <ReparationCollege />
+        </Grid>
+        <Grid xs={12} lg={6}>
+          <MoyenAge />
+        </Grid>
+      </Grid>
     </>
   );
 }
 
-function applyFilter({ inputData, entreprise }) {
+function applyFilter({ inputData, filters }) {
+  const { entreprise } = filters;
   if (entreprise !== 'Toutes mes entreprises') {
     inputData = inputData.filter((user) => user.entreprise === entreprise);
   }
