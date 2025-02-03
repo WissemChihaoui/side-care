@@ -19,6 +19,8 @@ const PageSix = lazy(() => import('src/pages/dashboard/six'));
 
 
 const Effectif = lazy(() => import('src/pages/dashboard/employes/index'));
+const Entreprises = lazy(() => import('src/pages/dashboard/employes/entreprises'));
+const AddEntreprise = lazy(() => import('src/pages/dashboard/employes/addEntreprises'));
 
 // ----------------------------------------------------------------------
 
@@ -40,6 +42,8 @@ export const dashboardRoutes = [
         path: 'employes',
         children: [
           { element: <Effectif />, index: true},
+          { element: <Entreprises />, path: 'entreprises'},
+          { element: <AddEntreprise />, path: 'entreprises/add'},
         ]
       },
       { path: 'two', element: <PageTwo /> },

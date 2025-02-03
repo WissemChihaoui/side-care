@@ -42,6 +42,7 @@ export default function EffectifsListView() {
         startIcon={<Iconify icon="mingcute:add-line" />}
         variant="contained"
         onClick={handleOpen}
+        color='primary'
       >
         Ajouter
       </Button>

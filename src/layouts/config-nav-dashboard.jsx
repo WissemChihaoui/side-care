@@ -54,7 +54,7 @@ export const navData = [
         path: paths.dashboard.employes.root, 
         icon: ICONS.users,
         children: [
-          { title: 'Entreprises', path: paths.dashboard.three},
+          { title: 'Entreprises', path: paths.dashboard.employes.entreprises},
           { title: 'Effectifs', path: paths.dashboard.employes.root},
           { title: 'Equipes', path: paths.dashboard.root},
           { title: 'Trombinoscope', path: paths.dashboard.root},

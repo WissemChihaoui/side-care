@@ -1,6 +1,6 @@
 import { _mock } from './_mock';
 
-export const ENTREPRISE = ['En création - SIRET', 'Portorium Consulting - SIRET'];
+export const ENTREPRISE = ['En création', 'Portorium Consulting'];
 
 export const TYPE_CONTRACT = [
   'Non défini',
