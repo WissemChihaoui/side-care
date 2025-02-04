@@ -19,8 +19,11 @@ const PageSix = lazy(() => import('src/pages/dashboard/six'));
 
 
 const Effectif = lazy(() => import('src/pages/dashboard/employes/index'));
-const Entreprises = lazy(() => import('src/pages/dashboard/employes/entreprises'));
-const AddEntreprise = lazy(() => import('src/pages/dashboard/employes/addEntreprises'));
+
+const Entreprises = lazy(() => import('src/pages/dashboard/entreprises/entreprises'));
+const AddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/add'));
+const ViewEntreprise = lazy(() => import('src/pages/dashboard/entreprises/view'));
+const SuccessAddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/successEntreprise'));
 
 // ----------------------------------------------------------------------
 
@@ -42,8 +45,15 @@ export const dashboardRoutes = [
         path: 'employes',
         children: [
           { element: <Effectif />, index: true},
-          { element: <Entreprises />, path: 'entreprises'},
-          { element: <AddEntreprise />, path: 'entreprises/add'},
+        ]
+      },
+      {
+        path: 'vos-entreprises',
+        children: [
+          { element: <Entreprises />, index: true},
+          { element: <AddEntreprise />, path: 'add'},
+          { element: <ViewEntreprise />, path: ':id/view'},
+          { element: <SuccessAddEntreprise />, path: 'add/success'},
         ]
       },
       { path: 'two', element: <PageTwo /> },

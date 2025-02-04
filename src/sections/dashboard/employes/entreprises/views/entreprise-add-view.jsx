@@ -8,16 +8,27 @@ import { Form, Field } from 'src/components/hook-form';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { paths } from 'src/routes/paths';
 import { today } from 'src/utils/format-time';
-import { Card, CardHeader, Divider, MenuItem, Stack, Typography } from '@mui/material';
+import { Button, Card, CardHeader, Divider, MenuItem, Stack, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useRouter } from 'src/routes/hooks';
 
-export const EntrepriseFormSchema = zod.object({
-  isCreated: zod.string(),
-  formeJuridique: zod.string(),
-  raison: zod.string().min(1, { message: "Raison social d'entrprise est requis" }),
-});
+export const EntrepriseFormSchema = zod
+  .object({
+    isCreated: zod.string(),
+    formeJuridique: zod.string(),
+    raison: zod
+      .string()
+      .min(1, { message: "Raison sociale de l'entreprise est requis" })
+      .optional(),
+    siret: zod.string().min(1, { message: 'SIRET est requis' }).optional(),
+  })
+  .refine((data) => data.raison || data.siret, {
+    message: 'Vous devez remplir au moins la raison sociale ou le SIRET',
+    path: ['raison'], // This will highlight the raison field if the validation fails
+  });
 
 export default function EntrepriseAddView() {
+  const router = useRouter();
   const defaultValues = {
     isCreated: '0',
     id: '',
@@ -60,7 +71,8 @@ export default function EntrepriseAddView() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      toast.success('Update success!');
+      toast.success('Ajouter succés!');
+      router.push(paths.dashboard.entreprise.successAddEntreprise);
       console.info('DATA', data);
     } catch (error) {
       console.error(error);
@@ -163,6 +175,78 @@ export default function EntrepriseAddView() {
       </Grid>
     </Card>
   );
+
+  const renderLogo = (
+    <Card>
+      <CardHeader
+        title="Logo de votre entreprise"
+        sx={{ mb: 3 }}
+        subheader="Ce logo s’affichera sur les espaces des collaborateurs de l’entreprise"
+      />
+      <Divider />
+      <Stack p={3}>
+        <Field.Upload name="logo" />
+      </Stack>
+    </Card>
+  );
+
+  const renderSalaire = (
+    <Card>
+      <CardHeader
+        title="Masse salariale annuelle"
+        sx={{ mb: 3 }}
+        subheader="Ce logo s’affichera sur les espaces des collaborateurs de l’entreprise"
+      />
+      <Divider />
+      <Stack p={3} height="1">
+        <Grid container spacing={2.5} sx={{ p: 3 }}>
+          <Grid xs={12}>
+            <Typography variant="subtitle2">Masse salariale Tranche A</Typography>
+            <Field.Text name="masseSalaireA" type="number" />
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="subtitle2">Masse salariale Tranche B</Typography>
+            <Field.Text name="masseSalaireB" type="number" />
+          </Grid>
+        </Grid>
+      </Stack>
+    </Card>
+  );
+
+  const renderProperities = (
+    <Card>
+      <CardHeader title="Taille de votre entreprise" sx={{ mb: 3 }} />
+      <Divider />
+      <Stack p={3}>
+        <Grid container spacing={2.5} sx={{ p: 3 }}>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Nombre de salariés</Typography>
+            <Field.Text name="employes.employesNumber" type="number" />
+          </Grid>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Moyenne d&apos;âge</Typography>
+            <Field.Text name="employes.avgAge" type="number" />
+          </Grid>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Nombre de salariés cadres</Typography>
+            <Field.Text name="employes.manageres" type="number" />
+          </Grid>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Moyenne d&apos;âge des salariés cadres</Typography>
+            <Field.Text name="employes.avgAgeManagers" type="number" />
+          </Grid>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Nombre de salariés non cadres</Typography>
+            <Field.Text name="employes.nonManagers" type="number" />
+          </Grid>
+          <Grid xs={12} md={6}>
+            <Typography variant="subtitle2">Moyenne d&apos;âge des salariés non cadres</Typography>
+            <Field.Text name="employes.avgAgeNonManagers" type="number" />
+          </Grid>
+        </Grid>
+      </Stack>
+    </Card>
+  );
   return (
     <>
       <DashboardContent>
@@ -170,13 +254,27 @@ export default function EntrepriseAddView() {
           heading="Ajouter entreprise"
           links={[
             { name: 'Tableau de bord', href: paths.dashboard.root },
-            { name: 'Entreprise', href: paths.dashboard.employes.entreprises },
+            { name: 'Entreprise', href: paths.dashboard.entreprise },
             { name: 'Ajouter' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
         <Form methods={methods} onSubmit={onSubmit}>
-          {renderInfo}
+          <Grid container spacing={2.5}>
+            <Grid xs={12}>{renderInfo}</Grid>
+            <Grid xs={12} md={5}>
+              {renderLogo}
+            </Grid>
+            <Grid xs={12} md={7}>
+              {renderSalaire}
+            </Grid>
+            <Grid xs={12}>{renderProperities}</Grid>
+          </Grid>
+          <Stack alignItems="flex-end" mt={2} px={2}>
+            <Button type="submit" color="primary" variant="contained">
+              Enregistrer
+            </Button>
+          </Stack>
         </Form>
       </DashboardContent>
     </>

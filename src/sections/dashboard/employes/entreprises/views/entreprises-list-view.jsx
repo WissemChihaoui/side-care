@@ -94,13 +94,13 @@ export function EntreprisesListView() {
         heading="Les entreprises"
         links={[
           { name: 'Tableau de bord', href: paths.dashboard.root },
-          { name: 'Entreprise', href: paths.dashboard.employes.entreprises },
+          { name: 'Entreprise', href: paths.dashboard.entreprise },
           { name: 'Liste' },
         ]}
         action={
           <Button
             component={RouterLink}
-            href={paths.dashboard.employes.addEntreprise}
+            href={paths.dashboard.entreprise.addEntreprise}
             variant="contained"
             startIcon={<Iconify icon="mingcute:add-line" />}
             color='primary'
