@@ -31,7 +31,7 @@ export function JobItem({ job, onView, onEdit, onDelete }) {
           <IconButton>
             <Iconify icon="material-symbols:edit" />
           </IconButton>
-          <IconButton>
+          <IconButton LinkComponent={RouterLink} href={paths.dashboard.entreprise.view(job.id)}>
             <Iconify icon="mdi:eye" />
           </IconButton>
         </Stack>

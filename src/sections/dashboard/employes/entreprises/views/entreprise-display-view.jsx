@@ -7,6 +7,7 @@ import { DashboardContent } from 'src/layouts/dashboard';
 import { useParams } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
 import InfoEntrepriseView from '../display/info-entreprise-view';
+import DocumentsEntrepriseView from '../display/documents-entreprise-view';
 
 const TABS_LIST = [
   {
@@ -26,6 +27,8 @@ const TABS_LIST = [
 export default function EntrepriseDisplayView({ id }) {
   const navTab = useTabs('info');
 
+  const tabLabel = TABS_LIST.filter((tab) => tab.value === navTab.value)
+
   return (
     <>
       <DashboardContent>
@@ -34,7 +37,7 @@ export default function EntrepriseDisplayView({ id }) {
           links={[
             { name: 'Tableau de bord', href: paths.dashboard.root },
             { name: 'Entreprises', href: paths.dashboard.entreprise },
-            { name: 'Information' },
+            { name: tabLabel[0].label },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
@@ -52,7 +55,7 @@ export default function EntrepriseDisplayView({ id }) {
         </Tabs>
         <Box p={4}>
             { navTab.value === 'info' && <InfoEntrepriseView />}
-            { navTab.value === 'doc' && <p>doc</p>}
+            { navTab.value === 'doc' && <DocumentsEntrepriseView />}
             { navTab.value === 'admin' && <p>admin</p>}
             { navTab.value === 'account' && <p>account</p>}
             { navTab.value === 'integrations' && <p>integrations</p>}
