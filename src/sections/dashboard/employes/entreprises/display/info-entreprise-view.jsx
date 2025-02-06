@@ -1,21 +1,16 @@
 import {
-  Box,
   Button,
   Card,
   CardContent,
   CardHeader,
   Divider,
-  Stack,
   Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import React, { useCallback, useState } from 'react';
-import { UploadAvatar, UploadBox } from 'src/components/upload';
+import { UploadAvatar } from 'src/components/upload';
 import { fData } from 'src/utils/format-number';
-import { Iconify } from 'src/components/iconify';
 import { EmptyContent } from 'src/components/empty-content';
-import MoyenAge from '../../effectifs/charts/moyen-age';
-import { ChartPie } from '../../effectifs/chart-pie';
 
 export default function InfoEntrepriseView() {
   const [avatarUrl, setAvatarUrl] = useState(null);

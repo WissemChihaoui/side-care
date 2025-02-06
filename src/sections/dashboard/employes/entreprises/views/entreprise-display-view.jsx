@@ -8,6 +8,9 @@ import { useParams } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
 import InfoEntrepriseView from '../display/info-entreprise-view';
 import DocumentsEntrepriseView from '../display/documents-entreprise-view';
+import AdminsEntrepriseTable from '../display/admins-entreprise-table';
+import AdminsEntrepriseView from '../display/admins-entreprise-view';
+import CompteBancairesView from '../display/compte-bancaires-view';
 
 const TABS_LIST = [
   {
@@ -54,10 +57,10 @@ export default function EntrepriseDisplayView({ id }) {
           ))}
         </Tabs>
         <Box p={4}>
-            { navTab.value === 'info' && <InfoEntrepriseView />}
-            { navTab.value === 'doc' && <DocumentsEntrepriseView />}
-            { navTab.value === 'admin' && <p>admin</p>}
-            { navTab.value === 'account' && <p>account</p>}
+            { navTab.value === 'info' && <InfoEntrepriseView /> }
+            { navTab.value === 'doc' && <DocumentsEntrepriseView /> }
+            { navTab.value === 'admin' && <AdminsEntrepriseView /> }
+            { navTab.value === 'account' && <CompteBancairesView />}
             { navTab.value === 'integrations' && <p>integrations</p>}
         </Box>
       </DashboardContent>

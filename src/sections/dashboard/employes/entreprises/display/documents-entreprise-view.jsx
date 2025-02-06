@@ -12,15 +12,14 @@ import {
   DialogTitle,
   Divider,
   FormControlLabel,
-  IconButton,
   MenuItem,
   OutlinedInput,
   Select,
   Stack,
-  Switch,
   TextField,
   Typography,
 } from '@mui/material';
+import { ADMIN_DOCS } from 'src/_mock';
 import React, { useCallback, useState } from 'react';
 import { Iconify } from 'src/components/iconify';
 import { Upload } from 'src/components/upload';
@@ -29,10 +28,7 @@ import { EmptyContent } from 'src/components/empty-content';
 import DocumentItem from '../document-item';
 
 export default function DocumentsEntrepriseView() {
-  const [documents, setDocuments] = useState([
-    { type: 'Acte de naissance', name: 'Nom de fichier 1', visible: true },
-    { type: 'Accord collectif', name: 'Nom de fichier 1', visible: false },
-  ]);
+  const [documents, setDocuments] = useState(ADMIN_DOCS);
   const [file, setFile] = useState(null);
   const [visible, setVisible] = useState(false);
 

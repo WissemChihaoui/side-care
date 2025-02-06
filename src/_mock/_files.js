@@ -94,3 +94,8 @@ export const _files = _fileNames.map((name, index) => ({
 }));
 
 export const _allFiles = [..._folders, ..._files];
+
+
+export const ADMIN_DOCS = [...Array(4)].map((_,index) =>(
+    { type: 'Acte de naissance', name: `Nom de fichier ${index}`, visible: true }
+))
