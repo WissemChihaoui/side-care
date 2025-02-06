@@ -11,6 +11,7 @@ import DocumentsEntrepriseView from '../display/documents-entreprise-view';
 import AdminsEntrepriseTable from '../display/admins-entreprise-table';
 import AdminsEntrepriseView from '../display/admins-entreprise-view';
 import CompteBancairesView from '../display/compte-bancaires-view';
+import IntegrationsTableView from '../display/integrations-table-view';
 
 const TABS_LIST = [
   {
@@ -61,7 +62,7 @@ export default function EntrepriseDisplayView({ id }) {
             { navTab.value === 'doc' && <DocumentsEntrepriseView /> }
             { navTab.value === 'admin' && <AdminsEntrepriseView /> }
             { navTab.value === 'account' && <CompteBancairesView />}
-            { navTab.value === 'integrations' && <p>integrations</p>}
+            { navTab.value === 'integrations' && <IntegrationsTableView />}
         </Box>
       </DashboardContent>
     </>
