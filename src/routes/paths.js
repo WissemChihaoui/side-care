@@ -53,6 +53,9 @@ export const paths = {
       view: (id)=>`${ROOTS.DASHBOARD}/vos-entreprises/${id}/view`,
       successAddEntreprise: `${ROOTS.DASHBOARD}/vos-entreprises/add/success`,
     },
+    equipes: {
+      root: `${ROOTS.DASHBOARD}/equipes`,
+    },
     two: `${ROOTS.DASHBOARD}/two`,
     three: `${ROOTS.DASHBOARD}/three`,
     group: {
