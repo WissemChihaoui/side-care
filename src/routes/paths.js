@@ -56,6 +56,9 @@ export const paths = {
     equipes: {
       root: `${ROOTS.DASHBOARD}/equipes`,
     },
+    trombinoscope: {
+      root: `${ROOTS.DASHBOARD}/trombinoscope`,
+    },
     two: `${ROOTS.DASHBOARD}/two`,
     three: `${ROOTS.DASHBOARD}/three`,
     group: {

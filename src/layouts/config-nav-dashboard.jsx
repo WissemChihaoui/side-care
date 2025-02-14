@@ -57,7 +57,7 @@ export const navData = [
           { title: 'Entreprises', path: paths.dashboard.entreprise.root},
           { title: 'Effectifs', path: paths.dashboard.employes.root},
           { title: 'Equipes', path: paths.dashboard.equipes.root},
-          { title: 'Trombinoscope', path: paths.dashboard.root},
+          { title: 'Trombinoscope', path: paths.dashboard.trombinoscope.root},
           { title: 'Organigramme', path: paths.dashboard.root},
           { title: 'Bilan social', path: paths.dashboard.root},
         ]

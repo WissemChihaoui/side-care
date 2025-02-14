@@ -25,6 +25,8 @@ const AddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/add'));
 const ViewEntreprise = lazy(() => import('src/pages/dashboard/entreprises/view'));
 const SuccessAddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/successEntreprise'));
 
+const Trombinoscope = lazy(() => import('src/pages/dashboard/trombinoscope/index'));
+
 const Equipes = lazy(() => import('src/pages/dashboard/equipe/index'));
 
 // ----------------------------------------------------------------------
@@ -62,6 +64,12 @@ export const dashboardRoutes = [
         path: 'equipes',
         children: [
           { element: <Equipes />, index: true},
+        ]
+      },
+      {
+        path: 'trombinoscope',
+        children: [
+          { element: <Trombinoscope />, index: true},
         ]
       },
       { path: 'two', element: <PageTwo /> },

@@ -34,6 +34,7 @@ export const _userFollowers = [...Array(18)].map((_, index) => ({
   name: _mock.fullName(index),
   country: _mock.countryNames(index),
   avatarUrl: _mock.image.avatar(index),
+  fonction : index % 2 ? "Comptable" : ""
 }));
 
 export const _userFriends = [...Array(18)].map((_, index) => ({
