@@ -18,6 +18,8 @@ import { Iconify } from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 import { fDate } from 'src/utils/format-time';
+import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +42,7 @@ export function EffectifsRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
             <Avatar alt={row.name} src={row.avatarUrl} />
 
             <Stack sx={{ typography: 'body2', flex: '1 1 auto', alignItems: 'flex-start' }}>
-              <Link color="inherit" onClick={onEditRow} sx={{ cursor: 'pointer' }}>
+              <Link color="inherit" href={paths.dashboard.employes.view(row.id)} component={RouterLink} sx={{ cursor: 'pointer' }}>
                 {row.name}
               </Link>
               <Box component="span" sx={{ color: 'text.disabled' }}>

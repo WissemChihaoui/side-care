@@ -97,7 +97,7 @@ export default function EffectifsListView() {
     <>
       <DashboardContent>
         <CustomBreadcrumbs
-          heading="List"
+          heading="Effectifs"
           links={[
             { name: 'Tableau de bord', href: paths.dashboard.root },
             { name: 'Employés', href: paths.dashboard.employes.root },
