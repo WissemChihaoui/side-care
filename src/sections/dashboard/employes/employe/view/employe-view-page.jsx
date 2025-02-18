@@ -121,6 +121,7 @@ export default function EmployeViewPage() {
       phone: user?.phone || '',
       socialSecurityNumber: user?.socialSecurityNumber || '',
       ameliCertificate: user?.ameliCertificate || '',
+      phonePro: user?.phonePro || '',
     }),
     [user]
   );
