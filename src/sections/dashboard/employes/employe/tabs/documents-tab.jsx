@@ -25,9 +25,11 @@ import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
 import AddDocumentDialog from '../add-document-dialog';
+import AddDocumentSolliciteDialog from '../add-document-sollicite-dialog';
 
 export function DocumentsTab() {
   const addDoc = useBoolean();
+  const addSol = useBoolean();
   const popover = usePopover();
   const [controlled, setControlled] = useState(false);
   const [addressId, setAddressId] = useState('')
@@ -169,7 +171,7 @@ export function DocumentsTab() {
                   size="small"
                   color="primary"
                   startIcon={<Iconify icon="mingcute:add-line" />}
-                  onClick={addDoc.onTrue}
+                  onClick={addSol.onTrue}
                 >
                   Solliciter un document
                 </Button>
@@ -245,6 +247,12 @@ export function DocumentsTab() {
       <AddDocumentDialog
         open={addDoc.value}
         onClose={addDoc.onFalse}
+        onCreate={handleAddDocument}
+      />
+
+      <AddDocumentSolliciteDialog
+        open={addSol.value}
+        onClose={addSol.onFalse}
         onCreate={handleAddDocument}
       />
     </>

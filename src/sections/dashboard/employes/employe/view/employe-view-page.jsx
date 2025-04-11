@@ -17,8 +17,6 @@ import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { useMockedUser } from 'src/auth/hooks';
 
 import {
-  EvpTab,
-  BankTab,
   TasksTab,
   AbsenceTab,
   HistoryTab,
@@ -85,18 +83,6 @@ const TABS = [
     label: 'Tâches',
     icon: <Iconify icon="clarity:tasks-solid" width={24} />,
     comp: <TasksTab />,
-  },
-  {
-    value: 'evp',
-    label: 'EVP',
-    icon: <Iconify icon="solar:wallet-bold" width={24} />,
-    comp: <EvpTab />,
-  },
-  {
-    value: 'bank',
-    label: 'I. Bancaire',
-    icon: <Iconify icon="mingcute:bank-fill" width={24} />,
-    comp: <BankTab />,
   },
   {
     value: 'history',
