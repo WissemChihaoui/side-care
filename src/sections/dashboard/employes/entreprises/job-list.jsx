@@ -23,8 +23,7 @@ export function JobList({ jobs }) {
 
   const handleEdit = useCallback(
     (id) => {
-      // router.push(paths.dashboard.job.edit(id));
-      console.log(id)
+      // router.push(paths.dashboard.entreprise.edit(id));
     },
     []
   );

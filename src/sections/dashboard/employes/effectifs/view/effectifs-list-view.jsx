@@ -1,12 +1,17 @@
-import { Button, IconButton, Menu, MenuItem, MenuList, Stack, Tab, Tabs } from '@mui/material';
-import React, { useCallback, useState } from 'react';
-import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-import { Iconify } from 'src/components/iconify';
-import { useTabs } from 'src/hooks/use-tabs';
-import { DashboardContent } from 'src/layouts/dashboard';
-import { RouterLink } from 'src/routes/components';
+import React, { useState, useCallback } from 'react';
+
+import { Tab, Menu, Tabs, Stack, Button, MenuItem, MenuList, IconButton } from '@mui/material';
+
 import { paths } from 'src/routes/paths';
-import { CustomPopover, usePopover } from 'src/components/custom-popover';
+
+import { useTabs } from 'src/hooks/use-tabs';
+
+import { DashboardContent } from 'src/layouts/dashboard';
+
+import { Iconify } from 'src/components/iconify';
+import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
+import { usePopover, CustomPopover } from 'src/components/custom-popover';
+
 import EffectifsList from '../effectifs-list';
 import StatistiquesView from '../statistiques-view';
 
@@ -94,8 +99,7 @@ export default function EffectifsListView() {
     </Stack>
   );
   return (
-    <>
-      <DashboardContent>
+    <DashboardContent>
         <CustomBreadcrumbs
           heading="Effectifs"
           links={[
@@ -110,6 +114,5 @@ export default function EffectifsListView() {
         {tabs.value === 'effectif' && <EffectifsList />}
         {tabs.value === 'statistiques' && <StatistiquesView />}
       </DashboardContent>
-    </>
   );
 }

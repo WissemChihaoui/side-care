@@ -6,22 +6,22 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
-import {EntrepriseAddEditForm} from '../entreprise-add-edit-form';
+import { EntrepriseAddEditForm } from '../entreprise-add-edit-form';
 
-export default function EntrepriseAddView() {
+export default function EntrepriseEditView({ entreprise }) {
   return (
     <DashboardContent>
       <CustomBreadcrumbs
-        heading="Ajouter entreprise"
+        heading="Modifier"
         links={[
           { name: 'Tableau de bord', href: paths.dashboard.root },
           { name: 'Entreprise', href: paths.dashboard.entreprise },
-          { name: 'Ajouter' },
+          { name: entreprise?.name },
         ]}
         sx={{ mb: { xs: 3, md: 5 } }}
       />
 
-      <EntrepriseAddEditForm />
+      <EntrepriseAddEditForm entreprise={entreprise}/>
     </DashboardContent>
   );
 }

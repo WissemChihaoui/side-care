@@ -11,11 +11,10 @@ import { useSetState } from 'src/hooks/use-set-state';
 
 import { orderBy } from 'src/utils/helper';
 
-import { DashboardContent } from 'src/layouts/dashboard';
 import {
   _jobs,
-  _roles,
 } from 'src/_mock';
+import { DashboardContent } from 'src/layouts/dashboard';
 import { ENTREPRISE_LIST } from 'src/_mock/_entreprises';
 
 import { Iconify } from 'src/components/iconify';
@@ -100,7 +99,7 @@ export function EntreprisesListView() {
         action={
           <Button
             component={RouterLink}
-            href={paths.dashboard.entreprise.addEntreprise}
+            href={paths.dashboard.entreprise.add}
             variant="contained"
             startIcon={<Iconify icon="mingcute:add-line" />}
             color='primary'

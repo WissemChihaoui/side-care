@@ -1,17 +1,20 @@
+import React, { useState } from 'react';
+
+import Grid from '@mui/material/Unstable_Grid2';
 import {
   Box,
   Card,
-  CardHeader,
   Divider,
-  InputLabel,
   MenuItem,
+  CardHeader,
+  InputLabel,
   ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
-import React, { useState } from 'react';
+
+import { ENTREPRISE_LIST } from 'src/_mock/_entreprises';
+
 import { Field } from 'src/components/hook-form';
-import { Iconify } from 'src/components/iconify';
 
 export function ProfessionalTab() {
   const [formats, setFormats] = useState(() => ['bold', 'italic']);
@@ -43,8 +46,7 @@ export function ProfessionalTab() {
     </ToggleButton>,
   ];
   return (
-    <>
-      <Grid container spacing={3}>
+    <Grid container spacing={3}>
         <Grid xs={12} md={4}>
           <Card
             sx={{
@@ -62,7 +64,15 @@ export function ProfessionalTab() {
                 xs: 'repeat(1, 1fr)',
               }}
             >
-              <Field.Text name="company" label="Entreprise" />
+              <Field.Select name="company" multiple label="Entreprise">
+                <MenuItem value="">Aucun</MenuItem>
+                <Divider sx={{ borderStyle: 'dashed' }} />
+                {ENTREPRISE_LIST.map((option) => (
+                  <MenuItem key={option.id} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </Field.Select>
               <Field.Text name="matricule" label="Matricule de l'employé" />
               <Field.Text name="poste" label="Poste" />
               <Field.Select name="team" multiple label="Equipe">
@@ -197,6 +207,5 @@ export function ProfessionalTab() {
           </Card>
         </Grid>
       </Grid>
-    </>
   );
 }

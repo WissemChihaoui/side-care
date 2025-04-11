@@ -23,6 +23,7 @@ const Employe = lazy(() => import('src/pages/dashboard/employes/view'));
 
 const Entreprises = lazy(() => import('src/pages/dashboard/entreprises/entreprises'));
 const AddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/add'));
+const EditEntreprise = lazy(() => import('src/pages/dashboard/entreprises/edit'));
 const ViewEntreprise = lazy(() => import('src/pages/dashboard/entreprises/view'));
 const SuccessAddEntreprise = lazy(() => import('src/pages/dashboard/entreprises/successEntreprise'));
 
@@ -58,6 +59,7 @@ export const dashboardRoutes = [
         children: [
           { element: <Entreprises />, index: true},
           { element: <AddEntreprise />, path: 'add'},
+          { element: <EditEntreprise />, path: ':id/edit'},
           { element: <ViewEntreprise />, path: ':id/view'},
           { element: <SuccessAddEntreprise />, path: 'add/success'},
         ]

@@ -4,8 +4,6 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
@@ -14,10 +12,9 @@ import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
-import { fCurrency } from 'src/utils/format-number';
 
 import { Iconify } from 'src/components/iconify';
-import { usePopover, CustomPopover } from 'src/components/custom-popover';
+import { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
@@ -25,10 +22,9 @@ export function JobItem({ job, onView, onEdit, onDelete }) {
   const popover = usePopover();
 
   return (
-    <>
-      <Card>
+    <Card>
         <Stack flexDirection='row' sx={{ position: 'absolute', top: 8, right: 8 }}>
-          <IconButton>
+          <IconButton LinkComponent={RouterLink} href={paths.dashboard.entreprise.edit(job.id)}>
             <Iconify icon="material-symbols:edit" />
           </IconButton>
           <IconButton LinkComponent={RouterLink} href={paths.dashboard.entreprise.view(job.id)}>
@@ -109,8 +105,5 @@ export function JobItem({ job, onView, onEdit, onDelete }) {
           ))}
         </Box>
       </Card>
-
-      
-    </>
   );
 }

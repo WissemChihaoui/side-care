@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
 
-import { BlankView } from 'src/sections/blank/view';
 import EffectifsListView from 'src/sections/dashboard/employes/effectifs/view/effectifs-list-view';
 
 // ----------------------------------------------------------------------

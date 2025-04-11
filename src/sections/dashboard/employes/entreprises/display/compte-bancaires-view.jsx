@@ -1,12 +1,17 @@
-import { Button, Card, CardContent, CardHeader, Stack, Table, TableBody, TableCell, TableRow } from '@mui/material'
 import React, { useState } from 'react'
-import { BANK_ACCOUNT } from 'src/_mock/_admins'
-import { ConfirmDialog } from 'src/components/custom-dialog'
-import { EmptyContent } from 'src/components/empty-content'
-import { Iconify } from 'src/components/iconify'
-import { Label } from 'src/components/label';
-import { TableHeadCustom } from 'src/components/table'
+
+import { Card, Stack, Table, Button, TableRow, TableBody, TableCell, CardHeader, CardContent } from '@mui/material'
+
 import { useBoolean } from 'src/hooks/use-boolean'
+
+import { BANK_ACCOUNT } from 'src/_mock/_admins'
+
+import { Label } from 'src/components/label';
+import { Iconify } from 'src/components/iconify'
+import { TableHeadCustom } from 'src/components/table'
+import { EmptyContent } from 'src/components/empty-content'
+import { ConfirmDialog } from 'src/components/custom-dialog'
+
 import AddBankModal from './add-bank-modal'
 
 const TABLE_HEAD = [
@@ -37,7 +42,6 @@ export default function CompteBancairesView() {
              >
                 Ajouter
               </Button>
-              
             }
           />
           <CardContent>
@@ -46,9 +50,7 @@ export default function CompteBancairesView() {
               <TableHeadCustom headLabel={TABLE_HEAD} />
               <TableBody>
                 {accounts.map((row, index) => (
-                  <>
-                    <AdminRow key={index} row={row} handleDelete={() => handleDelete(index)} />
-                  </>
+                  <AdminRow key={index} row={row} handleDelete={() => handleDelete(index)} />
                 ))}
               </TableBody>
             </Table>

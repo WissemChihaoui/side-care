@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
+
 import EmployeViewPage from 'src/sections/dashboard/employes/employe/view/employe-view-page';
 
 // ----------------------------------------------------------------------

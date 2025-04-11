@@ -1,27 +1,34 @@
-import { Tab, Tabs } from '@mui/material';
-import React, { useMemo } from 'react';
-import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-import { Iconify } from 'src/components/iconify';
-import { useTabs } from 'src/hooks/use-tabs';
-import { DashboardContent } from 'src/layouts/dashboard';
-import { paths } from 'src/routes/paths';
-import { useMockedUser } from 'src/auth/hooks';
-import { useForm } from 'react-hook-form';
-import { Form } from 'src/components/hook-form';
 import { toast } from 'sonner';
+import React, { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { Tab, Tabs } from '@mui/material';
+
+import { paths } from 'src/routes/paths';
+
+import { useTabs } from 'src/hooks/use-tabs';
+
+import { DashboardContent } from 'src/layouts/dashboard';
+
+import { Form } from 'src/components/hook-form';
+import { Iconify } from 'src/components/iconify';
+import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
+
+import { useMockedUser } from 'src/auth/hooks';
+
 import {
-  AbsenceTab,
-  BankTab,
-  DocumntsTab,
-  EntretienTab,
   EvpTab,
+  BankTab,
+  TasksTab,
+  AbsenceTab,
   HistoryTab,
+  WorkOffTab,
   MutuelleTab,
   PersonalTab,
+  DocumentsTab,
+  EntretienTab,
   PrevoyanceTab,
   ProfessionalTab,
-  TasksTab,
-  WorkOffTab,
 } from '../tabs';
 
 const TABS = [
@@ -71,7 +78,7 @@ const TABS = [
     value: 'documents',
     label: 'Documents',
     icon: <Iconify icon="solar:document-bold" width={24} />,
-    comp: <DocumntsTab />,
+    comp: <DocumentsTab />,
   },
   {
     value: 'tasks',
@@ -148,8 +155,7 @@ export default function EmployeViewPage() {
 
   const tabs = useTabs('personal');
   return (
-    <>
-      <DashboardContent>
+    <DashboardContent>
         <CustomBreadcrumbs
           heading="Wissem Chihaoui"
           links={[
@@ -168,6 +174,5 @@ export default function EmployeViewPage() {
           {TABS.find((tab) => tabs.value === tab.value)?.comp}
         </Form>
       </DashboardContent>
-    </>
   );
 }
