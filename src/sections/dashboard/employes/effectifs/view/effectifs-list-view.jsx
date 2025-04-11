@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { Tab, Menu, Tabs, Stack, Button, MenuItem, MenuList, IconButton } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
+import { useRouter } from 'src/routes/hooks';
 
 import { useTabs } from 'src/hooks/use-tabs';
 
@@ -20,6 +21,7 @@ export const JOB_DETAILS_TABS = [
   { label: 'Statistiques', value: 'statistiques' },
 ];
 export default function EffectifsListView() {
+  const router = useRouter()
   const tabs = useTabs('effectif');
   const popover = usePopover();
 
@@ -47,21 +49,28 @@ export default function EffectifsListView() {
         startIcon={<Iconify icon="mingcute:add-line" />}
         variant="contained"
         onClick={handleOpen}
-        color='primary'
+        color="primary"
       >
         Ajouter
       </Button>
       <Menu id="simple-menu" anchorEl={isOpen} onClose={handleClose} open={!!isOpen}>
-        <MenuItem>Créer un employé</MenuItem>
+        <MenuItem 
+           onClick={() => {
+            popover.onClose();
+            router.push(paths.dashboard.employes.add);
+          }}
+        >
+          Créer un employé
+        </MenuItem>
         <MenuItem>Réintégrer u ancien employé</MenuItem>
         <MenuItem>Générer un lien d&apos;invitation</MenuItem>
         <MenuItem>Importer mes employés via DSN</MenuItem>
         <MenuItem>Importer mes employés via fichiher excel</MenuItem>
       </Menu>
       <IconButton onClick={popover.onOpen}>
-            <Iconify icon="eva:more-vertical-fill" />
-          </IconButton>
-          <CustomPopover
+        <Iconify icon="eva:more-vertical-fill" />
+      </IconButton>
+      <CustomPopover
         open={popover.open}
         anchorEl={popover.anchorEl}
         onClose={popover.onClose}
@@ -100,19 +109,19 @@ export default function EffectifsListView() {
   );
   return (
     <DashboardContent>
-        <CustomBreadcrumbs
-          heading="Effectifs"
-          links={[
-            { name: 'Tableau de bord', href: paths.dashboard.root },
-            { name: 'Employés', href: paths.dashboard.employes.root },
-            { name: 'Effectifs' },
-          ]}
-          action={renderActions}
-          sx={{ mb: { xs: 3, md: 5 } }}
-        />
-        {renderTabs}
-        {tabs.value === 'effectif' && <EffectifsList />}
-        {tabs.value === 'statistiques' && <StatistiquesView />}
-      </DashboardContent>
+      <CustomBreadcrumbs
+        heading="Effectifs"
+        links={[
+          { name: 'Tableau de bord', href: paths.dashboard.root },
+          { name: 'Employés', href: paths.dashboard.employes.root },
+          { name: 'Effectifs' },
+        ]}
+        action={renderActions}
+        sx={{ mb: { xs: 3, md: 5 } }}
+      />
+      {renderTabs}
+      {tabs.value === 'effectif' && <EffectifsList />}
+      {tabs.value === 'statistiques' && <StatistiquesView />}
+    </DashboardContent>
   );
 }
