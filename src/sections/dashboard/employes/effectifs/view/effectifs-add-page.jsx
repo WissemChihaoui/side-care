@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 
-import { Card, Stack, Divider, CardHeader, Box, MenuItem } from '@mui/material';
+import { Box, Card, Stack, Divider, MenuItem, CardHeader } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
@@ -77,6 +77,49 @@ export default function EffectifsAddPage() {
       </Stack>
     </Card>
   );
+
+  const renderContract = (
+    <Card>
+      <CardHeader
+        title="Contrat"
+        subheader="Toutes les informations liées au contrat de travail de l'employé"
+        sx={{ mb: 3 }}
+      />
+
+      <Divider />
+      <Stack spacing={3} sx={{ p: 3 }}>
+        <Field.RadioGroup
+          row
+          name="gender"
+          label="Civilité"
+          options={[
+            { label: 'Homme', value: 'm' },
+            { label: 'Femme', value: 'f' },
+          ]}
+          sx={{ gap: 4 }}
+        />
+        <Box
+          columnGap={2}
+          rowGap={3}
+          display="grid"
+          gridTemplateColumns={{ xs: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        >
+           <Field.Select name="type" label="Type de contrat">
+            {['CDI', 'CDD'].map((entreprise)=> (
+              <MenuItem value={entreprise}>{entreprise}</MenuItem>
+            ) )}
+          </Field.Select>
+           <Field.Select name="college" label="Collège">
+            {['Cadre', 'Non Cadre'].map((entreprise)=> (
+              <MenuItem value={entreprise}>{entreprise}</MenuItem>
+            ) )}
+          </Field.Select>
+          <Field.DatePicker name="entreDate" label="Date d'entrée dans l'entreprise" />
+         
+        </Box>
+      </Stack>
+    </Card>
+  )
   return (
     <DashboardContent>
       <CustomBreadcrumbs
@@ -91,6 +134,7 @@ export default function EffectifsAddPage() {
       <Form methods={methods} onSubmit={onSubmit}>
         <Stack spacing={{ xs: 3, md: 5 }} sx={{ mx: 'auto', maxWidth: { xs: 720, xl: 880 } }}>
           {renderInformations}
+          {renderContract}
         </Stack>
       </Form>
     </DashboardContent>
